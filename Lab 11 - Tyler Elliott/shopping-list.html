@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping list example</title>
+    <style>
+      li {
+        margin-bottom: 10px;
+      }
+
+      li button {
+        font-size: 8px;
+        margin-left: 20px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>My shopping list</h1>
+
+    <div>
+      <label for="item">Enter a new item:</label>
+      <input type="text" name="item" id="item">
+      <button id="button">Add item</button>
+    </div>
+
+    <ul id="list">
+
+    </ul>
+
+    <script>
+      /*
+        Name: Tyler Elliott
+        Student Number: 200345596
+        Date: July 27th, 2023
+      */
+
+      // target each element and store in variable
+      let ul = document.getElementById('list');
+      let input = document.getElementById('item');
+      let button = document.getElementById('button');
+
+      // on button click, call function to add item to list
+      button.onclick = function(){
+        // store user input value then set value to blank
+        let currentValue = input.value;
+        input.value = '';
+
+        // create li, span, and button and store in variables
+        let li = document.createElement('li');
+        let span = document.createElement('span');
+        let button2 = document.createElement('button');
+
+        // append span and button2 to li
+        li.appendChild(span);
+        li.appendChild(button2);
+        // set span text to user chosen input text
+        span.textContent = currentValue;
+        // set button2 text to delete
+        button2.textContent = 'Delete';
+
+        // append ul with newly created li
+        ul.appendChild(li);
+
+        // add event listener to button2 that will call an arrow function on click to remove clicked li
+        button2.addEventListener('click', () => ul.removeChild(li));
+
+        // set cursor focus back on input element for next item
+        input.focus();
+      }
+    </script>
+  </body>
+</html>
